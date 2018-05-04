@@ -22,8 +22,8 @@ class dingding:
 
         self.data_text = dict()
         self.data_text['msgtype'] = 'text'
-        self.data_text['text'] = {'content': self.content}
-        self.data_text['at'] = {'isAtall': True}
+        self.data_text['text'] = {'content': str(self.content).replace('"','').replace(',','')}
+        self.data_text['at'] = {'isAtall': False}
 
     def main(self):
         text_json = json.dumps(self.data_text)

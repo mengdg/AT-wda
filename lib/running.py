@@ -79,8 +79,9 @@ class Running_test_case:
                     return False
                 except Exception:
                     self.flag_err = 1
-                    raise ValueError('请检查 module:%s  case:%s is_run:%s is_warning:%s'
+                    print ('请检查 module:%s  case:%s is_run:%s is_warning:%s'
                                      % (self.module, self.case, self.is_run, self.is_warning))
+                    pass
 
     def case_event(self, case):
         try:
@@ -478,15 +479,15 @@ class Running_test_case:
 
     def data(self, type, operate):
         data = dict()
-        data['type'] = type
-        data['module'] = self.module
-        data['case'] = self.case
-        data['operate'] = operate
+        data['告警类型'] = type
+        data['监控模块'] = self.module
+        data['监控case'] = self.case
+        data['告警事件'] = operate
         if self.flag_assert == 1 and self.flag_warn == 0:
-            data['err_info'] = str(self.assert_info)
+            data['告警信息'] = str(self.assert_info)
         elif self.flag_assert == 0 and self.flag_warn == 1:
-            data['err_info'] = str(self.err_info)
-        data['alarm_time'] = time.strftime('%Y.%m.%d %H:%M:%S ')
+            data['告警信息'] = str(self.err_info)
+        data['告警时间'] = time.strftime('%Y.%m.%d %H:%M:%S ')
         import json
         return json.dumps(data, indent=1, sort_keys=False, ensure_ascii=False)
 
